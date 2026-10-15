@@ -218,6 +218,9 @@ pnpm add github:xiaoyu-stars/project-handover-skill
 ```
 
 **方式 B · 直接放技能目录（免插件）**：把仓库里的 `skills/project-handover/` 整目录拷到 `~/.dsh/skills/`
-（或 Claude Code 的 `~/.claude/skills/`）即可被自动发现。本机当前就是这种方式。
+（或 Claude Code 的 `~/.claude/skills/`）即可被自动发现。
+
+> 本机（产出方）现状：已采用**方式 A** —— `dsh-project-handover` 已装进 `~/.dsh/profiles/desktop` 并登记到
+> `dsh.profile.bundles`；同时已删除 `~/.dsh/skills/project-handover/` 用户级副本，避免同一技能两份来源。
 
 **同名优先级**：插件内置（bundled）技能 rank 低于用户/项目技能，因此用户级副本始终优先。
