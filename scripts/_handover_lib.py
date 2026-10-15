@@ -22,7 +22,7 @@ REQUIRED_KEYS = [
     "created", "deadline", "priority", "resources", "depends_on",
     "verified", "submitted", "next_action",
 ]
-OPTIONAL_KEYS = ["owner", "repo", "base_commit", "blocking_reason", "tags"]
+OPTIONAL_KEYS = ["owner", "repo", "base_commit", "blocking_reason", "tags", "gated_actions"]
 
 ENUMS = {
     "kind": {"project", "task", "experiment", "research"},

@@ -30,7 +30,10 @@ next_action: "编译补丁并跑 A/B 基线对照"   # 接入时的第一个动�
 ---
 ```
 
-**可选键**：`owner`、`repo`、`base_commit`、`blocking_reason`、`tags`。
+**可选键**：`owner`、`repo`、`base_commit`、`blocking_reason`、`tags`、**`gated_actions`**。
+
+> `gated_actions`：列出该项目中**依赖具体机器资源配置、需要审批才能执行**的操作（如 `["编译构建", "跑 A/B 基准", "推 PR"]`）。
+> 交出方在此声明，接入方据此直接形成审批单；接入侧的两阶段规则见 `references/approval-gate.md`。
 
 | 键 | 约束 | 接入时怎么用 |
 | --- | --- | --- |
