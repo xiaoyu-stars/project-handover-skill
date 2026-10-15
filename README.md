@@ -84,19 +84,38 @@
 
 ## 安装
 
-**DeepSeek Harness（DSH）**
+### A. 作为 DSH 插件（推荐）
+
+本仓库就是一个 DeepSeek Harness bundle：`package.json` 声明 `dsh.bundle.patch`，`dsh/index.mjs` 把 `skills/` 挂到 harness 的 skills 服务。
 
 ```bash
-git clone https://github.com/xiaoyu-stars/project-handover-skill.git ~/.dsh/skills/project-handover
+# 1) 装到 profile 里（npm 名 / git URL / 本地路径三选一）
+cd ~/.dsh/profiles/<你的 profile>
+pnpm add github:xiaoyu-stars/project-handover-skill      # 或 pnpm add /path/to/clone
+
+# 2) 在 profile 的 package.json 里把包名加入 bundles
+#    "dsh": { "profile": { "bundles": [ ..., "dsh-project-handover" ] } }
+
+# 3) 重启 DSH
 ```
 
-**Claude Code / 其它兼容 Skill 目录**
+> 插件形式的好处：随 profile 一起版本化、可通过 `pnpm` 升级、与内置技能并列加载；
+> 同名时**用户/项目技能仍然优先**（skills 提供者的排序规则）。
+
+### B. 直接放技能目录（不走插件，最省事）
 
 ```bash
-git clone https://github.com/xiaoyu-stars/project-handover-skill.git ~/.claude/skills/project-handover
+git clone --depth 1 https://github.com/xiaoyu-stars/project-handover-skill.git /tmp/ph
+cp -r /tmp/ph/skills/project-handover ~/.dsh/skills/          # DSH
+cp -r /tmp/ph/skills/project-handover ~/.claude/skills/       # Claude Code 等兼容目录
 ```
 
-> 仓库根即技能目录（`SKILL.md` 在根），所以 clone 到 `<技能根>/project-handover` 即可被发现。
+### C. 只用脚本（任何环境）
+
+```bash
+git clone --depth 1 https://github.com/xiaoyu-stars/project-handover-skill.git
+ls /path/to/clone/skills/project-handover/scripts
+```
 
 ## 使用
 
@@ -176,17 +195,24 @@ next_action: "编译并跑基线对照"   # 接入后的第一个动作
 
 ```
 .
-├── SKILL.md                     # 技能定义（两个功能、硬规则、流程）
-├── references/
-│   ├── info-doc-format.md       # HANDOVER.md 固定格式规范
-│   ├── handover-doc-template.md # 骨架模板（照抄即合格）
-│   ├── package-entry-template.md
-│   ├── protocol-template.md     # 交接流程与启动指令骨架
-│   ├── kickoff-prompt-template.md
-│   ├── take-in-protocol.md      # 多项目接入决策与执行规范
-│   ├── approval-gate.md         # 资源门禁：阶段 A/B 分类表 + 审批单模板
-│   └── packaging-rules.md       # 打包/校验细则（踩坑记录）
-└── scripts/                     # 5 个工具 + 1 个共用小库
+├── package.json                      # DSH 插件包（dsh.bundle.patch → dsh/cordis.patch.yml）
+├── dsh/
+│   ├── index.mjs                     # 适配器：把 skills/ 挂到 harness 的 skills 服务
+│   └── cordis.patch.yml              # bundle 层：insert 本插件
+├── skills/project-handover/
+│   ├── SKILL.md                      # 技能定义（两个功能、硬规则、流程）
+│   ├── references/                   # 8 份规范与模板
+│   │   ├── info-doc-format.md        # HANDOVER.md 固定格式规范
+│   │   ├── handover-doc-template.md  # 骨架模板（照抄即合格）
+│   │   ├── package-entry-template.md
+│   │   ├── protocol-template.md      # 交接流程与启动指令骨架
+│   │   ├── kickoff-prompt-template.md
+│   │   ├── take-in-protocol.md       # 多项目接入决策与执行规范
+│   │   ├── approval-gate.md          # 资源门禁：阶段 A/B 分类表 + 审批单模板
+│   │   └── packaging-rules.md        # 打包/校验细则（踩坑记录）
+│   └── scripts/                      # 5 个工具 + 1 个共用小库
+├── README.md
+└── LICENSE
 ```
 
 ## License

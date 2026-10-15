@@ -1,0 +1,45 @@
+{
+  "name": "dsh-project-handover",
+  "version": "1.0.0",
+  "description": "DeepSeek Harness bundle: project handover skill (hand out one project as a verified archive with a fixed-format HANDOVER.md; take over one or many packages with independent per-project directories, and a resource gate that requires approval before any machine-resource-dependent execution).",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoyu-stars/project-handover-skill.git"
+  },
+  "homepage": "https://github.com/xiaoyu-stars/project-handover-skill#readme",
+  "bugs": {
+    "url": "https://github.com/xiaoyu-stars/project-handover-skill/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "handover",
+    "handoff",
+    "skill",
+    "agent"
+  ],
+  "exports": {
+    ".": "./dsh/index.mjs",
+    "./cordis.patch.yml": "./dsh/cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dsh",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./dsh/cordis.patch.yml"
+    }
+  }
+}

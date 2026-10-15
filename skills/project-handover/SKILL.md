@@ -208,4 +208,16 @@ SHA256: <sha>   大小: <n> MB   条目: <n> 个文件
 
 ## 安装 / 更新
 
-本 skill 位于**用户级技能根** `~/.dsh/skills/project-handover/`（DSH 自动发现；与插件内置技能同名时以本目录为准，插件升级不丢）。团队复用：整目录拷到对方 `<用户目录>/.dsh/skills/`。
+**方式 A · DSH 插件（推荐）**：本 skill 也以 DeepSeek Harness bundle 形式发布（`dsh-project-handover`）。
+仓库布局为 `skills/project-handover/` + `dsh/index.mjs`（把 `skills/` 挂到 harness 的 skills 服务）+ `dsh/cordis.patch.yml`（bundle 层 insert）。
+
+```bash
+cd ~/.dsh/profiles/<profile>
+pnpm add github:xiaoyu-stars/project-handover-skill
+# 再把 "dsh-project-handover" 加入 profile package.json 的 dsh.profile.bundles，然后重启 DSH
+```
+
+**方式 B · 直接放技能目录（免插件）**：把仓库里的 `skills/project-handover/` 整目录拷到 `~/.dsh/skills/`
+（或 Claude Code 的 `~/.claude/skills/`）即可被自动发现。本机当前就是这种方式。
+
+**同名优先级**：插件内置（bundled）技能 rank 低于用户/项目技能，因此用户级副本始终优先。

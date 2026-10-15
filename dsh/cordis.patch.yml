@@ -1,0 +1,17 @@
+# dsh-project-handover bundle layer for DeepSeek Harness.
+#
+# Applied after the profile's surface bundle. The package's adapter
+# (`dsh/index.mjs`) mounts `skills/` through the harness skills service, so the
+# `project-handover` skill shows up next to the built-in corpus.
+#
+# Install:
+#   1. cd ~/.dsh/profiles/<profile>
+#   2. pnpm add <this package>            # npm name, git URL, or a local path
+#   3. add "dsh-project-handover" to package.json -> dsh.profile.bundles
+#   4. restart DSH
+#
+# Patch config replacement is whole-value, so rows that adjust shipped
+# configuration restate every field they need.
+- insert:
+    - id: project-handover-skills
+      name: 'dsh-project-handover'
