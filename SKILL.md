@@ -1,6 +1,6 @@
 ---
 name: project-handover
-description: "项目交接的两个功能：**交出**（把一个项目/任务的全部内容与信息打成一个压缩包，含固定格式的项目信息文档）与**接入**（读取一个或多个交接包，先读完所有项目信息再决定接入细节，然后自动执行）。Use when the user says 交出 / 交接 / 导出交接包 / 项目交接 / hand over / handoff out, OR 接入 / 接手 / 继续这个项目 / 接入多个项目 / take over / handoff in / resume from a handover archive."
+description: "项目交接的两个功能：**交出**（把一个项目/任务的全部内容与信息打成一个压缩包，含固定格式的项目信息文档）与**接入**（为每个项目建独立命名目录、读完全部项目信息再决定接入细节；资源无关的读取与整理自动执行，编译/跑测/基准/训练/推送等**依赖机器资源配置的操作必须先汇报、审核通过后才执行**）。Use when the user says 交出 / 交接 / 导出交接包 / 项目交接 / hand over / handoff out, OR 接入 / 接手 / 继续这个项目 / 接入多个项目 / take over / handoff in / resume from a handover archive."
 argument-hint: "交出 <project-dir> | 接入 <pkg.tar.gz|dir> [<pkg2> ...] [--apply]"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(*)
 ---
