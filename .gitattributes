@@ -1,0 +1,7 @@
+# 统一换行，保证 Linux 侧拿到 LF（shell 脚本带 CRLF 会执行失败）
+* text=auto eol=lf
+*.sh  text eol=lf
+*.py  text eol=lf
+*.ps1 text eol=crlf
+*.tar.gz binary
+*.png binary
